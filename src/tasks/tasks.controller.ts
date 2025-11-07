@@ -16,11 +16,11 @@ import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { LoggerInterceptor } from 'src/common/dto/interceptors/logging.interceptor';
 
 @Controller('tasks')
-@UseInterceptors(new LoggerInterceptor())
 export class TasksController {
   constructor(private readonly taskService: TasksService) {}
 
   @Get()
+  @UseInterceptors(new LoggerInterceptor())
   findAllTasks(@Query() paginationDto: PaginationDto) {
     return this.taskService.findAll(paginationDto);
   }
